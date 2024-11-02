@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>View Images</title>
+</head>
+<body>
+    <h1>Images for User ID: {{ user_id }}</h1>
+    
+    {% if images %}
+        <div>
+            {% for image in images %}
+            <div class="card col-md-7 dt-image-content">
+                <header class="d-flex justify-content-between">
+                    <div class="d-flex flex-column">
+                        <p style="margin-bottom: -10px;">User ID: {{ user_id }}</p>
+                        <p style="margin-bottom: -10px;">Image User ID: {{ image.user_id }}</p>
+                        <p style="margin-bottom: -10px;">Is Detected: {{ image.is_detected }}</p>
+                        <div class="d-flex p-2">
+                            <form action="{{ url_for('detector.delete_image', filename=image.image_path) }}" method="POST">
+                                {{ detector_form.csrf_token }}
+                                {% if user_id == image.user_id %}
+                                    {{ delete_form.submit(class="btn btn-primary") }}
+                                {% else %}
+                                    {{ delete_form.submit(class="btn btn-primary", disabled="disabled") }}
+                                {% endif %}
+                            </form>
+                            <form action="{{ url_for('detector.detect', filename=image.image_path) }}" method="POST">
+                                {{ detector_form.csrf_token }}
+                                {% if user_id == image.user_id and not image.is_detected %}
+                                    {{ detector_form.submit(class="btn btn-primary") }}
+                                {% else %}
+                                    {{ detector_form.submit(class="btn btn-primary", disabled="disabled") }}
+                                {% endif %}
+                            </form>
+                        </div>
+                    </div>
+                </header>
+                <section>
+                    <img src="{{ url_for('static', filename='Images/'+image.image_path) }}" alt="Image" style="max-width: 200px; margin: 10px;" />
+                </section>
+                <footer>
+                    {% for tag in user_image_tag_dict[image.id] %}
+                        #{{ tag.tag_name }}
+                    {% endfor %}
+                </footer>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No images found for this ID.</p>
+    {% endif %}
+</body>
+</html>

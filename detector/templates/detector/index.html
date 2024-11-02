@@ -1,0 +1,18 @@
+{% extends "detector/base.html"%}
+{% block content %}
+<body>
+    <h1>Welcome</h1>
+    
+    <!-- 按鈕導向上傳頁面 -->
+    <a href="{{ url_for('detector.upload') }}">
+        <button>Upload</button>
+    </a>
+
+    <!-- ID 輸入區域，輸入後按Enter按鈕會到view.html顯示圖片 -->
+    <form method="POST" action="{{ url_for('detector.view_user') }}">
+        <label for="user_id">Enter Your ID:</label>
+        <input type="text" id="user_id" name="user_id" required>
+        <button type="submit">Enter</button>
+    </form>
+</body>
+{% endblock %}
