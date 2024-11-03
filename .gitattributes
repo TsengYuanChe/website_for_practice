@@ -3,4 +3,8 @@
 *.pt filter=lfs diff=lfs merge=lfs -text
 *.tar.gz filter=lfs diff=lfs merge=lfs -text
 *.html linguist-language=HTML
+**/*.html linguist-language=HTML
 *.css linguist-language=CSS
+**/*.css linguist-language=CSS
+venv/* linguist-vendored
+scripts/* linguist-vendored
