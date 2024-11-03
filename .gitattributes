@@ -8,3 +8,5 @@
 **/*.css linguist-language=CSS
 venv/* linguist-vendored
 scripts/* linguist-vendored
+Dockerfile linguist-language=Dockerfile
+**/Dockerfile linguist-language=Dockerfile
