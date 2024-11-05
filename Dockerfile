@@ -11,12 +11,9 @@ WORKDIR /usr/src/
 COPY requirements.txt .
 
 RUN pip install --upgrade pip && \
-    pip install psycopg2-binary torch==2.5.0 torchvision==0.20.0 --default-timeout=1000 && \
-    pip install --default-timeout=1000 -r requirements.txt
+    pip install --timeout=1000 torch==2.5.0 torchvision==0.20.0 && \
+    pip install --timeout=1000 -r requirements.txt
 
-RUN pip install psycopg2-binary && \
-    pip show psycopg2-binary
-    
 # 複製應用程式源碼
 COPY . .
 
