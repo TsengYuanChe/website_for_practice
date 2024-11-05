@@ -114,11 +114,7 @@ class TestingConfig(BaseConfig):
     WTF_CSRF_ENABLED = False
 
 class ProductionConfig(BaseConfig):
-    # 使用 Cloud SQL 的連接 URI 格式（適用於 MySQL）
-    SQLALCHEMY_DATABASE_URI = (
-        f"postgresql+psycopg2://{os.getenv('DB_USER')}@"
-        f"/{os.getenv('DB_NAME')}?host=/cloudsql/{os.getenv('CLOUD_SQL_CONNECTION_NAME')}"
-    )
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")  # 使用 Render 提供的資料庫連接字串
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = False  # 生產環境通常不啟用 SQL 查詢日誌
     
