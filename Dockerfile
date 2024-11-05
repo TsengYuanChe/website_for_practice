@@ -30,4 +30,4 @@ ENV FLASK_RUN_HOST=0.0.0.0
 EXPOSE 8080
 
 # 使用 init_db.py 初始化資料庫，並啟動 gunicorn
-CMD ["sh", "-c", "python init_db.py && gunicorn -w 4 -b :8080 'app:create_app()'"]
+CMD ["sh", "-c", "python init_db.py && gunicorn -w 1 -b :8080 'app:create_app()'"]
