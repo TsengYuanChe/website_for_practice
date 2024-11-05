@@ -2,20 +2,16 @@
 *.dylib filter=lfs diff=lfs merge=lfs -text
 *.pt filter=lfs diff=lfs merge=lfs -text
 *.tar.gz filter=lfs diff=lfs merge=lfs -text
-
 # 強制標記 HTML 和 CSS 文件
 *.html linguist-language=HTML
 **/*.html linguist-language=HTML
 *.css linguist-language=CSS
 **/*.css linguist-language=CSS
-
 # 將所有 Python 文件從語言統計中排除
 *.py linguist-vendored
-
 # 忽略其他不需要計入的文件夾
 venv/* linguist-vendored
 scripts/* linguist-vendored
-
 # 強制標記 Dockerfile
 Dockerfile linguist-language=Dockerfile
 **/Dockerfile linguist-language=Dockerfile
@@ -30,3 +26,4 @@ venv/* linguist-vendored
 scripts/* linguist-vendored
 Dockerfile linguist-language=Dockerfile
 **/Dockerfile linguist-language=Dockerfile
+detector/model.pt filter=lfs diff=lfs merge=lfs -text
